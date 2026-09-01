@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+ - name: src 
+   database: ODS
+   schema: land
+
+   tables:
+    - name: SOURCE_CLAIMS
+      identifier: SOURCE_CLAIMS
+
+models:
+ - name:  t_claim_src
+   columns:
+    - name:   claim_amount
+      data_tests: 
+          - positive_val
+    - name:   created_at
+      data_tests:
+          - no_future_date
+    - name: claim_status
+      data_tests:
+          - no_blank_space 
+    - name: created_at
+      data_tests:
+          - updated_after_created:
+              arguments:
+                compare_column: changed_at
+    - name: claim_id    
+      data_tests:
+          - not_null
+          - unique
+    - name: claim_status
+      data_tests:
+          - accepted_values:
+              arguments:
+                values: ['OPEN','CLOSED']
+      
