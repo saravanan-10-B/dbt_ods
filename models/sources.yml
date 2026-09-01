@@ -11,6 +11,13 @@ sources:
 
 models:
  - name:  t_claim_src
+   data_tests:
+    - no_duplicate_row
+    - duplicate_comb_check:
+        arguments: 
+          col1: claim_id
+          col2: policy_id
+    - all_not_null
    columns:
     - name:   claim_amount
       data_tests: 
@@ -18,9 +25,6 @@ models:
     - name:   created_at
       data_tests:
           - no_future_date
-    - name: claim_status
-      data_tests:
-          - no_blank_space 
     - name: created_at
       data_tests:
           - updated_after_created:
@@ -35,4 +39,15 @@ models:
           - accepted_values:
               arguments:
                 values: ['OPEN','CLOSED']
-      
+    - name: claim_status 
+      data_tests:
+        - no_blank_space 
+    - name: claim_status 
+      data_tests: 
+        - reject_claim_amt: 
+            arguments:
+              stat_column: claim_status
+              amt_column: claim_amount
+        - case_insensistive_status:
+            arguments:
+              values: ['open',' closed']
