@@ -1,0 +1,11 @@
+version: 2
+
+snapshots:
+  - name: t_claim_scd
+    data_tests:
+       - one_active_scd:
+           arguments: 
+             business_key: claim_id
+       - scd_date_check:
+          arguments: 
+             business_key: claim_id
