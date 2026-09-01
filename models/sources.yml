@@ -18,6 +18,13 @@ models:
           col1: claim_id
           col2: policy_id
     - all_not_null
+    - dynamic_unique_col:
+        arguments:
+          columns:
+          - claim_id
+          - policy_id
+          - claim_amount
+
    columns:
     - name:   claim_amount
       data_tests: 
