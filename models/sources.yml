@@ -45,12 +45,10 @@ models:
       data_tests:
           - accepted_values:
               arguments:
-                values: ['OPEN','CLOSED']
-    - name: claim_status 
-      data_tests:
-        - no_blank_space 
+                values: ['OPEN','CLOSED']      
     - name: claim_status 
       data_tests: 
+        - no_blank_space
         - reject_claim_amt: 
             arguments:
               stat_column: claim_status

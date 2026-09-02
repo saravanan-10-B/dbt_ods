@@ -40,3 +40,12 @@ models:
     # Applies to all files under models/example/
     example:
       +materialized: table
+seeds:
+    my_new_project:
+      +database: ods
+      +schema: stg
+
+      country_code: 
+        +column_types:
+          country_code: varchar
+          country_name: varchar
